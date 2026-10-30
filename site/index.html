@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tín hiệu nến · GMD ACV PLX STB GVR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f4; --panel:#fff; --ink:#15212b; --muted:#5d6b78; --line:#d8dee4;
+  --accent:#12495c; --up:#138a4e; --down:#d1342f; --flat:#8a6d00; --flat-bg:#fbf3d4;
+  --up-bg:#dff3e7; --down-bg:#fbe3e1; --chart-grid:#e6eaee;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0f161c; --panel:#17212a; --ink:#e7edf2; --muted:#93a2af; --line:#283642;
+  --accent:#6cc4dd; --up:#3dc47e; --down:#f06a63; --flat:#e6c34d; --flat-bg:#3a3217;
+  --up-bg:#16372a; --down-bg:#40201e; --chart-grid:#1f2b35;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Be Vietnam Pro",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:20px;margin:0 0 2px;font-weight:700}
+.sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{font:inherit;font-weight:600;padding:7px 16px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+#chart{height:460px}
+@media(max-width:600px){#chart{height:340px}}
+.head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sym{font-size:26px;font-weight:700}
+.price{font-size:22px;font-weight:600}
+.chg.up{color:var(--up)}.chg.down{color:var(--down)}
+.badge{display:inline-block;margin:10px 0 4px;padding:6px 14px;border-radius:8px;font-weight:700;font-size:16px}
+.badge.up{background:var(--up-bg);color:var(--up)}
+.badge.down{background:var(--down-bg);color:var(--down)}
+.badge.flat{background:var(--flat-bg);color:var(--flat)}
+h2{font-size:14px;margin:16px 0 6px;font-weight:600}
+ul{margin:0;padding-left:18px}
+li{margin:3px 0}
+dl{display:grid;grid-template-columns:1fr auto;gap:4px 10px;margin:0}
+dt{color:var(--muted)}dd{margin:0;text-align:right;font-weight:500}
+.note{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.err{padding:14px;border-radius:8px;background:var(--down-bg);color:var(--down)}
+.legend{font-size:12.5px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Tín hiệu nến theo ngày</h1>
+  <p class="sub" id="updated">Đang tải dữ liệu…</p>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="grid">
+    <div class="card">
+      <div id="chart"></div>
+      <div class="legend">Mũi tên xanh: mẫu nến nghiêng về tăng · mũi tên đỏ: nghiêng về giảm · đường SMA20 (xanh dương), SMA50 (cam).</div>
+    </div>
+    <aside class="card" id="panel" aria-live="polite"></aside>
+  </div>
+  <p class="note">Đây là công cụ tham khảo kỹ thuật tự động, không phải khuyến nghị đầu tư. Mẫu nến có độ chính xác thống kê hạn chế và có thể sai. Bạn tự chịu trách nhiệm với quyết định của mình.</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<script src="analysis.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
